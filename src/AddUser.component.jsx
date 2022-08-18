@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function AddUser({firstname="",lName="",agee=0,emaill="",passwordd=""}) {
+export default function AddUser({firstname,lName,Age,Email,Password}) {
   const [firstName, setfirstName] = useState(firstname);
   function getValueOfFirstName(event) {
     setfirstName(event.target.value);
@@ -24,7 +24,7 @@ export default function AddUser({firstname="",lName="",agee=0,emaill="",password
         document.getElementById("l_name").innerHTML="good"
     }
   }
-  const [age, setAge] = useState(agee);
+  const [age, setAge] = useState(Age);
   function getValueOfAge(event) {
     setAge(event.target.value);
     if (age!==event.target.value&&""!==event.target.value) {
@@ -36,7 +36,7 @@ export default function AddUser({firstname="",lName="",agee=0,emaill="",password
         document.getElementById("age").innerHTML="good"
     }
   }
-  const [email, setEmail] = useState(emaill);
+  const [email, setEmail] = useState(Email);
   function getValueOfEmail(event) {
     setEmail(event.target.value);
     if (email!==event.target.value&&""!==event.target.value) {
@@ -48,7 +48,7 @@ export default function AddUser({firstname="",lName="",agee=0,emaill="",password
         document.getElementById("email").innerHTML="good"
     }
   }
-  const [password, setPassword] = useState(passwordd);
+  const [password, setPassword] = useState(Password);
   function getValueOfPassword(event) {
     setPassword(event.target.value);
     if (password!==event.target.value&&""!==event.target.value) {
@@ -63,26 +63,41 @@ export default function AddUser({firstname="",lName="",agee=0,emaill="",password
   function preventDefault(e) {
     e.preventDefault();
   }
-  function chackIfFormIsFull() {
-    switch ("") {
-      case firstName:
-        return alert("Please fill all inputs");
-      case lastName:
-        return alert("Please fill all inputs");
-      case age:
-        return alert("Please fill all inputs");
-      case email:
-        return alert("Please fill all inputs");
-      case password:
-        return alert("Please fill all inputs");
-      default:
-         if(age!==0){
-         return alert("Good form has sent")}
-         else{
-        return alert("Please fill all inputs");
-         }
+  function chackForm() {
+    let userArray = [firstName,lastName,age,email,password]
+    let PorpsArray = [firstname,lName,Age,Email,Password]
+    let x = ""
+    userArray.map((item,index)=>{
+        if (item===PorpsArray[index]||item==="") {
+            x="out"
+        }
+    })
+    if (x==="out") {
+        alert("Please fill all inputss")
+    }
+    else{
+      alert("good")
     }
   }
+  // function chackIfFormIsFull() {
+  //   switch ("") {
+  //     case firstName:
+  //       return alert("Please fill all inputs");
+  //     case lastName:
+  //       return alert("Please fill all inputs");
+  //     case age:
+  //       return alert("Please fill all inputs");
+  //     case email:
+  //       return alert("Please fill all inputs");
+  //     case password:
+  //       return alert("Please fill all inputs");
+  //     default:
+
+  //        else{
+  //       return alert("Please fill all inputs");
+  //        }
+  //   }
+  // }
   return (
     <div>
       <form onSubmit={(e) => preventDefault(e)}>
@@ -101,7 +116,7 @@ export default function AddUser({firstname="",lName="",agee=0,emaill="",password
         <input type="text" onChange={(e) => getValueOfPassword(e)} />
         <p id="password"></p>
         <br />
-        <button onClick={chackIfFormIsFull}>click</button>
+        <button onClick={chackForm}>click</button>
       </form>
     </div>
   );
