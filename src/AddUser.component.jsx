@@ -1,123 +1,84 @@
-import { useState } from "react";
-export default function AddUser({firstname,lName,Age,Email,Password}) {
-  const [firstName, setfirstName] = useState(firstname);
-  function getValueOfFirstName(event) {
-    setfirstName(event.target.value);
-    if (firstName!==event.target.value&&""!==event.target.value) {
-        document.getElementById("f_name").style.color="red"
-        document.getElementById("f_name").innerHTML="bad"
+import { useState } from "react"
+export default function AddUser() {
+    let [firstName,setfirstName] = useState("")
+    function getValueOfFirstNAME(event) {
+        setfirstName(event.target.value)
     }
-    else{
-        document.getElementById("f_name").style.color="green"
-        document.getElementById("f_name").innerHTML="good"
+    let [lastName,setLastName] = useState("")
+    function getValueOfLastName(event) {
+        setLastName(event.target.value)
     }
-  }
-  const [lastName, setLastName] = useState(lName);
-  function getValueOfLasttName(event) {
-    setLastName(event.target.value);
-    if (lastName!==event.target.value&&""!==event.target.value) {
-        document.getElementById("l_name").style.color="red"
-        document.getElementById("l_name").innerHTML="bad"
+    let [age,setAge] = useState("")
+    function getValueOAge(event) {
+        setAge(event.target.value)
     }
-    else{
-        document.getElementById("l_name").style.color="green"
-        document.getElementById("l_name").innerHTML="good"
+    let [email,setEmail] = useState("")
+    function getValueOfEmail(event) {
+        setEmail(event.target.value)
     }
-  }
-  const [age, setAge] = useState(Age);
-  function getValueOfAge(event) {
-    setAge(event.target.value);
-    if (age!==event.target.value&&""!==event.target.value) {
-        document.getElementById("age").style.color="red"
-        document.getElementById("age").innerHTML="bad"
+    let [password,setpassword] = useState("")
+    function getValueOfPassword(event) {
+        setpassword(event.target.value)
     }
-    else{
-        document.getElementById("age").style.color="green"
-        document.getElementById("age").innerHTML="good"
-    }
-  }
-  const [email, setEmail] = useState(Email);
-  function getValueOfEmail(event) {
-    setEmail(event.target.value);
-    if (email!==event.target.value&&""!==event.target.value) {
-        document.getElementById("email").style.color="red"
-        document.getElementById("email").innerHTML="bad"
-    }
-    else{
-        document.getElementById("email").style.color="green"
-        document.getElementById("email").innerHTML="good"
-    }
-  }
-  const [password, setPassword] = useState(Password);
-  function getValueOfPassword(event) {
-    setPassword(event.target.value);
-    if (password!==event.target.value&&""!==event.target.value) {
-        document.getElementById("password").style.color="red"
-        document.getElementById("password").innerHTML="bad"
-    }
-    else{
-        document.getElementById("password").style.color="green"
-        document.getElementById("password").innerHTML="good"
-    }
-  }
-  function preventDefault(e) {
-    e.preventDefault();
-  }
-  function chackForm() {
-    let userArray = [firstName,lastName,age,email,password]
-    let PorpsArray = [firstname,lName,Age,Email,Password]
-    let x = ""
-    userArray.map((item,index)=>{
-        if (item===PorpsArray[index]||item==="") {
-            x="out"
+    let [confirmPassword,setConfirmPassword] = useState("")
+    function getValueOfConfirmPassword(event) {
+        setConfirmPassword(event.target.value)
+        if (password===event.target.value) {
+            document.getElementById("PasswordConfirm").style.color="green"
+            document.getElementById("PasswordConfirm").innerHTML="Password Are the same"
         }
-    })
-    if (x==="out") {
-        alert("Please fill all inputss")
+        else{
+            document.getElementById("PasswordConfirm").style.color="red"
+            document.getElementById("PasswordConfirm").innerHTML="Password Are not the same"
+        }
+    } 
+    function chackIfPasswordAreTheSame(e) {
+        if (password===confirmPassword) {
+            return alert(" Wonderful passwrods are the same")
+        }
+        else{
+            e.preventDefault(e)
+            return alert("passwrods are not the same")
+        }
     }
-    else{
-      alert("good")
-    }
-  }
-  // function chackIfFormIsFull() {
-  //   switch ("") {
-  //     case firstName:
-  //       return alert("Please fill all inputs");
-  //     case lastName:
-  //       return alert("Please fill all inputs");
-  //     case age:
-  //       return alert("Please fill all inputs");
-  //     case email:
-  //       return alert("Please fill all inputs");
-  //     case password:
-  //       return alert("Please fill all inputs");
-  //     default:
-
-  //        else{
-  //       return alert("Please fill all inputs");
-  //        }
-  //   }
-  // }
-  return (
-    <div>
-      <form onSubmit={(e) => preventDefault(e)}>
-        <input type="text" onChange={(e) => getValueOfFirstName(e)} />
-        <p id="f_name"></p>
-        <br />
-        <input type="text" onChange={(e) => getValueOfLasttName(e)} />
-        <p id="l_name"></p>
-        <br />
-        <input type="number" onChange={(e) => getValueOfAge(e)} />
-        <p id="age"></p>
-        <br />
-        <input type="text" onChange={(e) => getValueOfEmail(e)} />
-        <p id="email"></p>
-        <br />
-        <input type="text" onChange={(e) => getValueOfPassword(e)} />
-        <p id="password"></p>
-        <br />
-        <button onClick={chackForm}>click</button>
-      </form>
-    </div>
-  );
+    return(
+        <div>
+            <form>
+                <input placeholder="First Name" type="text" onChange={(e)=>getValueOfFirstNAME(e)}/>
+                <br />
+                <input placeholder="Last Name" type="text" onChange={(e)=>getValueOfLastName(e)}/>
+                <br />
+                <input placeholder="Age" type="text" onChange={(e)=>getValueOAge(e)}/>
+                <br />
+                <input placeholder="Email" type="text" onChange={(e)=>getValueOfEmail(e)}/>
+                <br />
+                <input placeholder="Password" type="text" onChange={(e)=>getValueOfPassword(e)}/>
+                <br />
+                <input placeholder="Confirm Password" type="text" onChange={(e)=>getValueOfConfirmPassword(e)}/>
+                <p id="PasswordConfirm"></p>
+                <br />
+                <button on onClick={(e)=>chackIfPasswordAreTheSame(e)}>click</button>
+                <div id="UserTable" >
+                <table>
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Confirm Password</th>
+                </thead>
+                <tbody>
+                    <tr><td>{firstName}</td>
+                    <td>{lastName}</td>
+                    <td>{age}</td>
+                    <td>{email}</td>
+                    <td>{password}</td>
+                    <td>{confirmPassword}</td></tr>
+                </tbody>
+            </table>
+                </div>
+            </form>
+        </div>
+    )
 }
