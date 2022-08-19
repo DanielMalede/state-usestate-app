@@ -12,8 +12,6 @@ export default function Teacher({teacher}) {
             <button onClick={changeToMyName}>change to my name</button>
             <button onClick={changeToMyLastName}>change to my last name</button>
             <button onClick={namesToUpperCase}>Convert toUpperCase</button>
-
-
         </div>
     )
 
