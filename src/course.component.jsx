@@ -17,6 +17,7 @@ export default function CourseFun() {
             <button onClick={addNewTOSubj}>add "New" to subj</button>
             {/* {stusent.map(()=><Student/>)} */}
             
+            
 
 
         </div>
