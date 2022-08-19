@@ -5,6 +5,7 @@ import CourseFun from './course.component';
 // import Counter from './Counter.component';
 function App() {
   return (
+    
     <div className="App">
       {/* <User/> */}
       <CourseFun/>
