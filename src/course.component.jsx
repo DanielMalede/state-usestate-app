@@ -15,7 +15,7 @@ export default function CourseFun() {
             <button onClick={ChangeStudentArray}>add to student array</button>
             <br/>
             <button onClick={addNewTOSubj}>add "New" to subj</button>
-            {/* {stusent.map(()=><Student/>)} */}
+            {stusent.map(()=><Student/>)}
         </div>
     ) 
 }
